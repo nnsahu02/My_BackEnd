@@ -10,14 +10,14 @@ router.get('/movies', function (req, res) {
 })
 
 //qn2
-router.get('/movies/:indexNumber', function (req, res) {
-    let movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
+// router.get('/movies/:indexNumber', function (req, res) {
+//     let movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
 
-    const indexNumber = req.params.indexNumber
-    console.log("The index of the movie is", indexNumber)
+//     const indexNumber = req.params.indexNumber
+//     console.log("The index of the movie is", indexNumber)
 
-    res.send(movies[indexNumber])
-})
+//     res.send(movies[indexNumber])
+// })
 
 //qn3
 router.get('/movies/:indexNumber', function (req, res) {
@@ -69,7 +69,7 @@ router.get('/films/:filmid', function(req,res) {
         "name": "Finding Nemo"
     }]
     let filmid = req.params.filmid
-    if(filmid < films.length){
+    if(filmid < films.length - 1){
         res.send(films[filmid])
     }else {
         res.send("no movies exist with this id")
