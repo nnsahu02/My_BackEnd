@@ -24,10 +24,10 @@ router.get('/movies/:indexNumber', function (req, res) {
     let movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
 
     const indexNumber = req.params.indexNumber
-    if (indexNumber < movies.length) {
-        res.send(movies[indexNumber])
-    } else {
+    if (indexNumber > (movies.length - 1)) {
         res.send("enter a valid index")
+    } else {
+        res.send(movies[indexNumber])
     }
 })
 
