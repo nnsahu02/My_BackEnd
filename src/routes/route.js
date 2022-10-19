@@ -54,26 +54,35 @@ router.get('/films', function (req, res) {
 })
 
 //qn5
-router.get('/films/:filmid', function(req,res) {
-    let films = [{
+router.get("/films/:filmId", function(req, res){
+    const films = [ {
         "id": 1,
         "name": "The Shining"
-    }, {
+       }, {
         "id": 2,
         "name": "Incendies"
-    }, {
+       }, {
         "id": 3,
         "name": "Rang de Basanti"
-    }, {
+       }, {
         "id": 4,
         "name": "Finding Nemo"
-    }]
-    let filmid = req.params.filmid
-    if(filmid < films.length - 1){
-        res.send(films[filmid])
-    }else {
-        res.send("no movies exist with this id")
-    }
+       }]
+
+       let filmId = req.params.filmId
+
+       //iterate all the films
+       //search for a film whose id matches with the id recevied in request
+       for(let i = 0; i < films.length; i++){
+           let film = films[i]
+           if(film.id == filmId) {
+               //if there is a match return the response from here
+               return res.send(film)
+           }
+       }
+
+       //if there is no match give an error response
+       res.send("The film id doesn't match any movie")
 })
 
 module.exports = router;
