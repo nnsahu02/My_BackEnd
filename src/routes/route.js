@@ -37,10 +37,15 @@ router.post('/players', function (req, res) {
 
     //LOGIC WILL COME HERE
     let elem = req.body
-    players.push(elem)
 
-    res.send({ data: players, status: true })
+    const Player = players.find(x => x.name === elem.name)
 
+    if(Player){
+        res.send({message : "player with this name alraeady exist"})
+    }else{
+        players.push(elem)
+        return res.send({ data: players, status: true })
+    }
 })
 
 module.exports = router;
