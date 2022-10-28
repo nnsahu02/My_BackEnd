@@ -39,25 +39,9 @@ const AuthorName = async function (req, res) {
 
 // 4
 const AuthorNAMes = async function (req, res) {
-    let newbook = await BookModel.find({ price: { $gte: 50, $lte: 100 } }).select({ name: 1, price: 1, author_id: 1, _id: 0 })
-    //console.log(newbook)
-
-    let authorIdList = newbook.map(book => book.author_id)
-    // //console.log(authorIdList)
-
-    const authorList = await AuthorModel.find({ author_id: { $in: authorIdList } }).select({ author_name: 1, author_id: 1, _id: 0 })
-
-    res.send({ AuthorNameWithBook: authorList })
-
-    // newbook.forEach(book => {
-    //     const authorIdOfBook = book.author_id
-    //     const author = authorList.find(author => authorIdOfBook === author.author_id)
-
-    //     book.author_id = author.name
-
-    //     console.log(author)
-    //     res.send({ msg: newbook })
-    // })
+    let newbook = await BookModel.find({ price: { $gte: 50, $lte: 100 } }).populate("author_id")
+    
+    res.send({ AuthorNameWithBook: newbook })
 
 }
 
