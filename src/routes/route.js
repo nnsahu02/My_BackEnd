@@ -10,12 +10,12 @@ router.post("/user", userController.creatUser)
 router.post("/login", userController.loginuser)
 
 //3. get user data
-router.get("/users/:userId", auth.validatetoken, userController.getuserdetails)
+router.get("/users/:userId", auth.validatetoken,auth.authorizeUser, userController.getuserdetails)
 
 //4. update user
-router.put("/users/:userId", auth.validatetoken, userController.updateUser) 
+router.put("/users/:userId", auth.validatetoken,auth.authorizeUser, userController.updateUser) 
 
 //5. delete user
-router.delete("/users/:userId", auth.validatetoken, userController.deleteUser)
+router.delete("/users/:userId", auth.validatetoken,auth.authorizeUser, userController.deleteUser)
 
 module.exports = router;
