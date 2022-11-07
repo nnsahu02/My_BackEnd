@@ -1,38 +1,49 @@
 const jwt = require("jsonwebtoken")
 
 let validatetoken = function (req, res, next) {
-    let token = req.headers["x-auth-token"]
+    try {
+        let token = req.headers["x-auth-token"]
 
-    if (!token) {
-        return res.send({ status: false, msg: "token must needed" })
+        if (!token) {
+            return res.status(400).send({ status: false, msg: "token must needed" })
+        }
+
+        let decodetoken = jwt.verify(token, "my secret key")
+
+        //console.log(decodetoken)
+
+        if (!decodetoken) {
+            return res.status(401).send({ status: false, msg: "token is invalid" })
+        }
+
+        req.token = decodetoken
+        next()
     }
-
-    let decodetoken = jwt.verify(token, "my secret key")
-
-    //console.log(decodetoken)
-
-    if (!decodetoken) {
-        return res.send({ status: false, msg: "token is invalid" })
+    catch (error) {
+        res.status(500).send({ msg: error.message })
     }
-    next()
 
 }
 
 let authorizeUser = function (req, res, next) {
+    try {
 
-    userId = req.params.userId
+        userId = req.params.userId
 
-    let token = req.headers["x-auth-token"]
+        //let token = req.headers["x-auth-token"]
 
-    let decodetoken = jwt.verify(token, "my secret key")
+       // let decodetoken = jwt.verify(token, "my secret key")
 
-    userIdfrmDecToken = decodetoken.userId
+        userIdfrmDecToken = req.token.userId
 
-    if (userId !== userIdfrmDecToken) {
-        return res.send("access denied !!")
+        if (userId !== userIdfrmDecToken) {
+            return res.status(403).send("access denied !!")
+        }
+        next()
     }
-    next()
-
+    catch (error) {
+        res.status(500).send({ msg: error.message })
+    }
 
 }
 
