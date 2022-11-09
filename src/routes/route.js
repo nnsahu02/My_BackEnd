@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const CowinController= require("../controllers/cowinController")
+const weathercontroller= require("../controllers/weathercontroller")
 
 
 
@@ -18,6 +19,9 @@ router.get("/cowin/getByPin", CowinController.getByPin)
 router.get("/cowin/vaccinationByDist", CowinController.vaccinationByDist) 
 
 router.post("/cowin/getOtp", CowinController.getOtp)
+
+
+router.get("/weather", weathercontroller.getwether)
 
 
 
