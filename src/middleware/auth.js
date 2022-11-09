@@ -14,6 +14,8 @@ let validatetoken = function (req, res, next) {
     if (!decodetoken) {
         return res.send({ status: false, msg: "token is invalid" })
     }
+
+    req.token = decodetoken // adding attribute to req
     next()
 
 }
@@ -22,11 +24,7 @@ let authorizeUser = function (req, res, next) {
 
     userId = req.params.userId
 
-    let token = req.headers["x-auth-token"]
-
-    let decodetoken = jwt.verify(token, "my secret key")
-
-    userIdfrmDecToken = decodetoken.userId
+    userIdfrmDecToken = req.token.userId
 
     if (userId !== userIdfrmDecToken) {
         return res.send("access denied !!")
