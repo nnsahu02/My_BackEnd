@@ -1,11 +1,11 @@
 let axios = require('axios');
-let getwether = async function (req, res) {
+let getweather = async function (req, res) {
     try {
         let city = ["Bengaluru", "mumbai", "Delhi", "Kolkata", "Chennai", "London", "Moscow"]
         let cityarry = []
         for (let index = 0; index < city.length; index++) {
             let object = { cities: city[index] };
-            let gettemp = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city[index]}&appid=8da9dbb65f3268acdf9011a1f046ae82 `)
+            let gettemp = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city[index]}&appid=8c4f5433011ce9e1d070705693e9cf39 `)
             object.temp = gettemp.data.main.temp
             cityarry.push(object)
         }
@@ -15,4 +15,4 @@ let getwether = async function (req, res) {
         res.status(500).send({msg:error.message})
     }
 } 
-module.exports.getwether = getwether
+module.exports.getweather = getweather
