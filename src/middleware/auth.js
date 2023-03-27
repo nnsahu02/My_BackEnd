@@ -81,6 +81,4 @@ const authoriseAuthorfrmQuery = async function (req, res, next) {
 
 //------------------------------------------------------------------------------------------------------------------//
 
-module.exports.authenticateAuthor = authenticateAuthor
-module.exports.authoriseAuhtor = authoriseAuhtor
-module.exports.authoriseAuthorfrmQuery = authoriseAuthorfrmQuery
+module.exports = { authenticateAuthor, authoriseAuhtor, authoriseAuthorfrmQuery }

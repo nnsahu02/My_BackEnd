@@ -237,8 +237,4 @@ const deleteBlogsUsingQuery = async function (req, res) {
 
 
 
-module.exports.createBlog = createBlog
-module.exports.getBlogs = getBlogs
-module.exports.updateBlogs = updateBlogs
-module.exports.deleteBlogs = deleteBlogs
-module.exports.deleteBlogsUsingQuery = deleteBlogsUsingQuery
+module.exports ={createBlog,getBlogs,updateBlogs,deleteBlogs,deleteBlogsUsingQuery}

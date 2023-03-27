@@ -20,4 +20,4 @@ const validateEmail = async function (req, res, next) {
 
 //--------------------------------------------------------------------------------------------------------------//
 
-module.exports.validateEmail = validateEmail
+module.exports= {validateEmail}
